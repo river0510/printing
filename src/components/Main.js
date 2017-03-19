@@ -4,6 +4,8 @@ require('styles/App.scss');
 import React from 'react';
 import MenuLeft from './MenuLeft.js';
 import MenuRight from './MenuRight.js';
+import Img from './Img.js';
+
 
 var menuDatas = require('../data/menuData.json');
 var imgDatas = require('../data/imgData.json');
@@ -32,6 +34,14 @@ class AppComponent extends React.Component {
 				//  isChosed : false
 				//  id :
 				// }
+			],
+			imgArr: [
+				// {
+				// 	isChosed : false
+				//  height : 0
+				//  width : 0
+				//  menuId :
+				// }
 			]
 		}
 	}
@@ -49,9 +59,35 @@ class AppComponent extends React.Component {
 			})
 		}.bind(this);
 	}
+	showCover(menuId, index) {
+		return function() {
+			let imgArr = this.state.imgArr;
+			imgArr.forEach((value, i) => {
+				if (menuId == value.menuId) {
+					if (index == i) {
+						let isChosed = imgArr[i].isChosed ? false : true;
+						imgArr[i] = {
+							isChosed: isChosed,
+							menuId: menuId
+						}
+					} else {
+						imgArr[i] = {
+							isChosed: false,
+							menuId: menuId
+						}
+					}
+				}
+			});
+			this.setState({
+				imgArr: imgArr
+			});
+		}.bind(this);
+	}
 	render() {
-		var menuLeftList = [],
-			menuRightList = [];
+		let menuLeftList = [],
+			menuRightList = [],
+			imgs = [];
+
 		menuDatas.forEach((value, index) => {
 			if (!this.state.menuArr[index]) {
 				this.state.menuArr[index] = {
@@ -73,16 +109,33 @@ class AppComponent extends React.Component {
 							<MenuRight
 								data={v}
 								key={i}
+								showCover={this.showCover(v.menuId,i)}
 							/>
 						);
 					}
 				})
 			}
 		});
+		imgDatas.forEach((value, index) => {
+			if (!this.state.imgArr[index]) {
+				this.state.imgArr[index] = {
+					isChosed: false,
+					menuId: value.menuId
+				}
+			}
+			imgs.push(
+				<Img
+					data={value}
+					state={this.state.imgArr[index]}
+					key={index}
+				/>
+			)
+		});
 		return (
 			<div className='stage'>
-				<div className='stageImg'>
-					<img className='img' src="../images/底图.png" alt="stage"/>
+				<div className='stageImg'>					
+					<img className='main-img' ref="mainImg" src="../images/底图.png" alt="stage"/>
+					{imgs}
 					<div className='menu-side menu-left'>
 						<ul>
         				{menuLeftList}
