@@ -133,7 +133,7 @@ class AppComponent extends React.Component {
 		});
 		return (
 			<div className='stage'>
-				<div className='stageImg'>					
+				<div className='stageImg clearfloat'>					
 					<img className='main-img' ref="mainImg" src="../images/底图.png" alt="stage"/>
 					{imgs}
 					<div className='menu-side menu-left'>

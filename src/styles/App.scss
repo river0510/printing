@@ -14,8 +14,7 @@ color: #fff;
 .clearfloat{zoom:1}
 /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/  
 ::-webkit-scrollbar  
-{   
-    height: 15px;  
+{ 
     background-color: #F5F5F5;  
 }  
   
@@ -43,15 +42,21 @@ body {
   width: 100%;
   height: 100%;
   .stageImg{
-    height: 730px;
+    height: 715px;
     overflow: auto;
     font-size: 0;
+    @media screen and (max-height: 800px) {
+      height: 500px
+    }    
     .main-img{
       height: 715px;
       position: absolute;
       left: 0;
       top: 0;
-      z-index: 1000;      
+      z-index: 1000;
+      @media screen and (max-height: 800px) {
+        height: 500px
+      }            
     }
   }
 }
@@ -67,7 +72,10 @@ body {
   background-color: rgba(0,0,0,0.5);
   padding-top: 50px;
   overflow: auto;
-    
+
+  @media screen and (max-height: 800px) {
+    height: 500px
+  }   
 }
 .menu-left{
   left: 0;
@@ -76,7 +84,6 @@ body {
   right: 0;
 }
 .menu-bottom{
-  height: 200px;
   text-align: center;
   overflow: auto;
   p{
