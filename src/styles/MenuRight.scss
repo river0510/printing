@@ -1,23 +1,18 @@
-.menu-right{
-	width: 18%;
-	height: 100%;
-	position: fixed;
-	z-index: 1000;
-	right: 0;
-	top: 0;
-	box-sizing: border-box;
-	
-	background-color: rgba(0,0,0,0.5);
-	padding-top: 50px;
-	overflow: auto;
-	li{
-		margin: 50px auto;
-		width: 150px;
-		height: 150px;
+.right-li{
+	width: 100%;
 
-		img{
-			height: 150px;
-			width: 150px;
-		}
+	img{
+		margin: 50px auto;
+		display: block;
+		height: 140px;
+		width: 140px;
+		padding: 10px;
+		cursor: pointer;
+		box-sizing: border-box;
+		border: 2px solid rgba(0,0,0,0);
+	}
+	img:hover{
+		border: 2px solid #fff;
 	}
 }
+	
