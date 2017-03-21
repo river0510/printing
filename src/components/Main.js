@@ -4,7 +4,9 @@ require('styles/App.scss');
 import React from 'react';
 import MenuLeft from './MenuLeft.js';
 import MenuRight from './MenuRight.js';
+import MenuBottom from './MenuBottom.js';
 import Img from './Img.js';
+
 
 
 var menuDatas = require('../data/menuData.json');
@@ -27,12 +29,6 @@ class AppComponent extends React.Component {
 				// {
 				//  isChosed : false
 				//	id :
-				// }
-			],
-			thumbArr: [
-				// {
-				//  isChosed : false
-				//  id :
 				// }
 			],
 			imgArr: [
@@ -86,6 +82,7 @@ class AppComponent extends React.Component {
 	render() {
 		let menuLeftList = [],
 			menuRightList = [],
+			menuBottomList = [],
 			imgs = [];
 
 		menuDatas.forEach((value, index) => {
@@ -130,10 +127,20 @@ class AppComponent extends React.Component {
 					key={index}
 				/>
 			)
+			if (this.state.imgArr[index].isChosed) {
+				menuBottomList.push(
+					<MenuBottom
+						data={value}
+						state={this.state.imgArr[index]}
+						key={index}
+					/>
+				)
+			}
+
 		});
 		return (
 			<div className='stage'>
-				<div className='stageImg clearfloat'>					
+				<div className='stageImg clearfloat'>
 					<img className='main-img' ref="mainImg" src="../images/底图.png" alt="stage"/>
 					{imgs}
 					<div className='menu-side menu-left'>
@@ -146,7 +153,8 @@ class AppComponent extends React.Component {
       				</div>
 				</div>
 				<div className='menu-bottom'>
-					<p>已选项目</p>
+					<p className='bottom-title'>已选项目</p>
+					{menuBottomList}
 				</div>
       		</div>
 		);

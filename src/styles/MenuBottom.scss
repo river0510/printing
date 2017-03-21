@@ -1,31 +1,17 @@
-.menu-bottom{
-	height: 250px;
-	width: 100%;
-	position: fixed;
-	left: 0;
-	bottom: 0;
-	z-index: 999;
-	text-align: center;
-	ul{
-		display: inline-block;
-		box-sizing: border-box;
-		width: 60%;
-		height: 250px;
-		background-color: rgba(0,0,0,0.5);
-		padding-top: 30px;
-		li{
-			display: inline-block;
-			margin: 20px;
-			figure{
-				img{
-					height: 100px;
-					width: 100px;
-				}
-				figcaption{
-					color: #aaa;
-					font-size: 18px;					
-				}
-			}
+.bottom-figure{
+	height: 150px;
+	display: inline-block;
+	margin: 0 20px;
+	img{
+		width: 100px;
+		height: 100px;
+	}
+	figcaption{
+		height: 50px;
+		margin-top: 10px;
+		p{
+			color: #fff;
+			font:15px/15px '微软雅黑';
 		}
 	}
 }
