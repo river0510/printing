@@ -158,8 +158,8 @@ class AppComponent extends React.Component {
 
 		let startClass = this.state.showStart ? 'start' : 'start start-disappear',
 			wrapperClass = this.state.showStart ? 'wrapper' : 'wrapper wrapper-disappear',
-			menuLeftClass = this.state.showMenu ? 'menu-side menu-left show-menu' : 'menu-side menu-left hide-menu',
-			menuRightClass = this.state.showMenu ? 'menu-side menu-right show-menu' : 'menu-side menu-right hide-menu',
+			menuLeftClass = this.state.showMenu && !this.state.showStart ? 'menu-side menu-left show-menu' : 'menu-side menu-left hide-menu',
+			menuRightClass = this.state.showMenu && !this.state.showStart ? 'menu-side menu-right show-menu' : 'menu-side menu-right hide-menu',
 			hideTitle = this.state.showMenu ? '隐藏菜单' : '显示菜单';
 
 		return (
