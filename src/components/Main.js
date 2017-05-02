@@ -38,7 +38,9 @@ class AppComponent extends React.Component {
 				//  width : 0
 				//  menuId :
 				// }
-			]
+			],
+			showStart: true,
+			showMenu: true,
 		}
 	}
 	menuChose(index) {
@@ -78,6 +80,21 @@ class AppComponent extends React.Component {
 				imgArr: imgArr
 			});
 		}.bind(this);
+	}
+
+	showStart = (e) => {
+		e.preventDefault();
+		this.setState({
+			showStart: false
+		})
+	}
+
+	showMenu = (e) => {
+		e.preventDefault();
+		let showMenu = this.state.showMenu ? false : true;
+		this.setState({
+			showMenu: showMenu
+		})
 	}
 	render() {
 		let menuLeftList = [],
@@ -138,24 +155,40 @@ class AppComponent extends React.Component {
 			}
 
 		});
+
+		let startClass = this.state.showStart ? 'start' : 'start start-disappear',
+			wrapperClass = this.state.showStart ? 'wrapper' : 'wrapper wrapper-disappear',
+			menuLeftClass = this.state.showMenu ? 'menu-side menu-left show-menu' : 'menu-side menu-left hide-menu',
+			menuRightClass = this.state.showMenu ? 'menu-side menu-right show-menu' : 'menu-side menu-right hide-menu',
+			hideTitle = this.state.showMenu ? '隐藏菜单' : '显示菜单';
+
 		return (
-			<div className='stage'>
-				<div className='stageImg clearfloat'>
-					<img className='main-img' ref="mainImg" src="../images/底图.png" alt="stage"/>
-					{imgs}
-					<div className='menu-side menu-left'>
-						<ul>
-        				{menuLeftList}
-        				</ul>
-      				</div>
-      				<div className='menu-side menu-right'>
-        				{menuRightList}
-      				</div>
+			<div>
+				<div className={wrapperClass}>
 				</div>
-				<div className='menu-bottom'>
-					<p className='bottom-title'>已选项目</p>
-					{menuBottomList}
-				</div>
+				<div className='stage'>
+					<a className="hide-btn" onClick={this.showMenu}>{hideTitle}</a>
+					<div className='stageImg clearfloat'>
+						<img className='main-img' ref="mainImg" src="../images/底图.png" alt="stage"/>
+						{imgs}
+						<div className={menuLeftClass}>
+							<ul>
+	        				{menuLeftList}
+	        				</ul>
+	      				</div>
+	      				<div className={menuRightClass}>
+	        				{menuRightList}
+	      				</div>
+					</div>
+					<div className='menu-bottom'>
+						<p className='bottom-title'>已选项目</p>
+						{menuBottomList}
+					</div>
+	      		</div>      		
+	     		<div className={startClass}>
+	     			<p className="start-title">THE ROOM</p>
+					<a className="start-btn" onClick={this.showStart}>START</a>	     			
+	     		</div>
       		</div>
 		);
 	}
